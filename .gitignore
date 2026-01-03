@@ -98,3 +98,20 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# --- Additional safety ignores ---
+
+# Unity Package Cache
+Library/PackageCache/
+
+# JetBrains IDE
+.idea/
+
+# Burst / DOTS
+[Bb]urstDebugInformation/
+[Bb]urstBuildCache/
+
+# Standalone builds
+*.exe
+*.exe.meta
+
