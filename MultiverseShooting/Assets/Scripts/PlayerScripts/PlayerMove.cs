@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     
     private Vector2 dir;
     private Rigidbody2D rb;
+    private float speedRate = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,16 @@ public class PlayerMove : MonoBehaviour
 
         dir.Normalize();
 
-        pos += dir * speed;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speedRate = 2.0f;
+        }
+        else
+        {
+            speedRate = 1.0f;
+        }
+           
+        pos += dir * speed / speedRate;
 
         rb.MovePosition(pos);
     }
