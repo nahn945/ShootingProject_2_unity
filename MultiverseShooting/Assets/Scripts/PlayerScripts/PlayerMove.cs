@@ -6,8 +6,9 @@ public class PlayerMove : MonoBehaviour
 {
 
     private Vector2 pos;
-    private float speed = 0.01f;
-    
+    private readonly float speed = 0.01f;
+
+    private float limit = 5.0f;
     private Vector2 dir;
     private Rigidbody2D rb;
     private float speedRate = 2.0f;
@@ -17,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     {
         pos = new Vector2(0, 0);
         dir = new Vector2(0, 0);
+        
         transform.position = pos;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -25,19 +27,19 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         dir = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) && pos.y + 1 < limit)
         {
             dir.y = 1;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) && pos.y - 1 > -limit)
         {
             dir.y = -1;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && pos.x - 1 > -limit)
         {
             dir.x = -1;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && pos.x + 1 < limit)
         {
             dir.x = 1;
         }
@@ -52,7 +54,7 @@ public class PlayerMove : MonoBehaviour
         {
             speedRate = 1.0f;
         }
-           
+
         pos += dir * speed / speedRate;
 
         rb.MovePosition(pos);
