@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   limitY: 5
+  angle: 90
 --- !u!114 &6252090828600002076
 MonoBehaviour:
   m_ObjectHideFlags: 0
