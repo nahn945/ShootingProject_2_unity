@@ -7,6 +7,9 @@ public class BulletMove : MonoBehaviour
     public float limitY = 5.0f;
     public float angle = 90f;
 
+    public bool isRound = false;
+    public float roundAngle = 0f;
+
     public bool isHoming = false;
     public float homingTime = 1.0f;
 
@@ -40,6 +43,13 @@ public class BulletMove : MonoBehaviour
             rb.velocity = dir * speed;
         }
 
+        if (isRound)
+        {
+            StartCoroutine(makeRotation());
+        }
+
+        roundAngle = 0f;
+
     }
 
     void Update()
@@ -49,11 +59,37 @@ public class BulletMove : MonoBehaviour
             StartCoroutine(makeCross());
         }
 
+        roundAngle = (roundAngle + 1) % 90;
+
         if (Mathf.Abs(transform.position.y) >= limitY)
         {
             Destroy(gameObject);
         }
     }
+
+    IEnumerator makeRotation()
+    {
+        float currentAngle = angle;
+
+        while (true)
+        {
+            if (currentAngle - angle >= 90) { break; }
+            
+            // ­‚µ‚¸‚Âis•ûŒü‚ğ‰ñ‚·
+            currentAngle += roundAngle * Time.deltaTime;
+
+            Vector3 dir;
+            dir.x = Mathf.Cos(currentAngle * Mathf.Deg2Rad);
+            dir.y = Mathf.Sin(currentAngle * Mathf.Deg2Rad);
+            dir.z = 0;
+            dir.Normalize();
+
+            rb.velocity = dir * speed;
+
+            yield return null;
+        }
+    }
+
 
     IEnumerator makeCross()
     {
