@@ -6,43 +6,38 @@ public class PatternRotation : IEnemyBullet
     int count;
     float speed;
 
-    float baseAngle;     // Œ»İ‚ÌŠî€Šp
-    float rotateAngle;   // 1‰ñ‚Ì”­Ë‚Å‰ñ“]‚·‚éŠp“x
-
-    static int rotateNum; // ¡‚Ü‚Å‚Ì‰ñ“]‰ñ”
-    int rotateMax; // ‰½‰ñ‚Ü‚Å‰ñ“]‚·‚é‚©
+    float currentAngle;   // š –ˆ‰ñXV‚³‚ê‚éŠî€Šp
+    float rotateAngle;
 
     public PatternRotation(
         GameObject prefab,
         int count,
         float speed,
-        float startAngle, 
-        float rotateAngle,
-        int rotateMax
+        float startAngle,
+        float rotateAngle
     )
     {
         bulletPrefab = prefab;
         this.count = count;
         this.speed = speed;
-        //this.baseAngle = startAngle;
-        this.baseAngle = 0;
+        this.currentAngle = startAngle;
         this.rotateAngle = rotateAngle;
-        this.rotateMax = rotateMax;
     }
 
-    public void Fire(Vector3 origin, Transform target)
+    public void Fire(Vector3 origin, Transform target, float defaultAngle)
     {
         for (int i = 0; i < count; i++)
         {
-            float angle = 360f / count * i;
-            angle += rotateAngle * rotateNum;
+            float angle = 360f / count * i + currentAngle;
 
             GameObject bullet = Object.Instantiate(bulletPrefab, origin, Quaternion.identity);
-            bullet.GetComponent<BulletMove>().speed = speed;
-            bullet.GetComponent<BulletMove>().angle = angle;
-            bullet.GetComponent<BulletMove>().isRound = false;
+            var move = bullet.GetComponent<BulletMove>();
+            move.speed = speed;
+            move.angle = defaultAngle + angle;
         }
 
-        rotateNum = (rotateNum + 1) % rotateMax;
+        // š Ÿ‰ñ‚Ì‚½‚ß‚ÉŠî€Šp‚ğXV
+        currentAngle += rotateAngle;
+        currentAngle %= 360f; // ”CˆÓi”’lˆÀ’è—pj
     }
 }

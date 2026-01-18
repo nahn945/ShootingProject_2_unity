@@ -15,11 +15,11 @@ public class PatternSingle : IEnemyBullet
         this.angle = angle;
     }
 
-    public void Fire(Vector3 origin, Transform target)
+    public void Fire(Vector3 origin, Transform target, float defaultAngle)
     {
         GameObject bullet = Object.Instantiate(bulletPrefab, origin, Quaternion.identity);
 
         bullet.GetComponent<BulletMove>().speed = speed;
-        bullet.GetComponent<BulletMove>().angle = angle;
+        bullet.GetComponent<BulletMove>().angle = defaultAngle + angle;
     }
 }

@@ -25,7 +25,10 @@ public class BulletTest : MonoBehaviour
     void Update()
     {
         // rotateMaxÇÕ(endTime - startTime) / intervalÇ≈ì±èo(int)
-        bulletController.SetPattern(0f, 8.0f, 0.5f, new PatternCross(bulletPrefab, 10, 2.0f, false, 20f));
+        bulletController.SetRotation(0f, 1.0f, 0.1f, 30f, new PatternCircle(bulletPrefab, 10, 2.0f));
+        bulletController.SetRotation(2.0f, 3.0f, 0.1f, -30f, new PatternCircle(bulletPrefab, 10, 2.0f));
+
+        bulletController.SetRotation(5.0f, 8.0f, 0.1f, 5f, new PatternCircle(bulletPrefab, 4, 2.0f));
     }
 
     
