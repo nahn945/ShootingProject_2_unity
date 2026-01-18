@@ -21,7 +21,7 @@ public class BulletAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("hit!");
+            //Debug.Log("hit!");
             CoreControl coreControl = collision.gameObject.GetComponent<CoreControl>();
 
             coreControl.DamageHP(AttackPoint);
