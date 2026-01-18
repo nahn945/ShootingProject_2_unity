@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private float speedRate = 2.0f;
 
+    private GameSceneUIController controller;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +23,15 @@ public class PlayerMove : MonoBehaviour
         
         transform.position = pos;
         rb = GetComponent<Rigidbody2D>();
+
+        controller = GameObject.FindWithTag("UIManager").GetComponent<GameSceneUIController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (controller.isPaused) return;
+
         dir = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.UpArrow) && pos.y + 1 < limit)
         {

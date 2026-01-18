@@ -9,15 +9,23 @@ public class PlayerAttack : MonoBehaviour
     private int timer = 0;
     private readonly int attackInterval = 60;
 
+    private GameSceneUIController controller;
+
     // Start is called before the first frame update
     void Start()
     {
         timer = 30;
+        controller = GameObject.FindWithTag("UIManager").GetComponent<GameSceneUIController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (controller.isPaused)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Z) && timer >= attackInterval)
         {
             timer = 0;
