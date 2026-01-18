@@ -6,6 +6,10 @@ public class GameSceneUIController : MonoBehaviour
 {
     public GameObject gameover;
 
+    public GameObject pause;
+
+    public bool isPaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +19,36 @@ public class GameSceneUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameover.activeSelf)
+        {
+            if (!pause.activeSelf)
+            {
+                isPaused = true;
+                pause.SetActive(true);
+            }
+            else
+            {
+                isPaused = false;
+                pause.SetActive(false);
+                
+            }
+
+        }
     }
 
     public void DisplayGameOver()
     {
         if (gameover.activeSelf) return;
         gameover.SetActive(true);
-        Time.timeScale = 0f;
+        isPaused = true;
     }
 }
