@@ -29,6 +29,7 @@ public class BulletTest : MonoBehaviour
         bulletController.SetRotation(2.0f, 3.0f, 0.1f, -30f, new PatternCircle(bulletPrefab, 10, 2.0f));
 
         bulletController.SetRotation(5.0f, 8.0f, 0.1f, 5f, new PatternCircle(bulletPrefab, 4, 2.0f));
+        bulletController.SetHoming(8.0f, 12.0f, 0.5f, 0f, new PatternSingle(bulletPrefab, 2.0f, 0f));
     }
 
     

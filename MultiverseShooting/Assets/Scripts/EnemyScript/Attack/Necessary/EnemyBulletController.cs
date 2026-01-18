@@ -12,11 +12,15 @@ public class EnemyBulletController : MonoBehaviour
 
     public bool isExpired = false;
 
+    float homingAngle;
+
     void Update()
     {
         timer += Time.deltaTime;
         shotTimer += Time.deltaTime;
-        
+
+        Vector3 dir = (player.transform.position - transform.position);
+        homingAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg; 
     }
 
     public void SetPattern(
@@ -57,5 +61,16 @@ public class EnemyBulletController : MonoBehaviour
         {
             SetPattern(startTime + interval * i, startTime + interval * (i+1), interval, rotationAngle * i, enemyBullet); 
         }
+    }
+
+    public void SetHoming(
+        float startTime,
+        float endTime,
+        float interval,
+        float rotationAngle,
+        IEnemyBullet enemyBullet
+        )
+    {
+        SetPattern(startTime, endTime, interval, homingAngle, enemyBullet);
     }
 }
