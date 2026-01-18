@@ -22,7 +22,7 @@ public abstract class CrossPatternBase : IEnemyBullet
         this.homing = homing;
     }
 
-    public void Fire(Vector3 origin, Transform target)
+    public void Fire(Vector3 origin, Transform target, float defaultAngle)
     {
         pos = origin;
 

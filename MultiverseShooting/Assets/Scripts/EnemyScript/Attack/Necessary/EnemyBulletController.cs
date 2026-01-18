@@ -23,6 +23,7 @@ public class EnemyBulletController : MonoBehaviour
         float startTime,
         float endTime,
         float interval,
+        float rotationAngle,
         IEnemyBullet enemyBullet
     )
     {
@@ -39,8 +40,22 @@ public class EnemyBulletController : MonoBehaviour
 
         if (shotTimer >= interval)
         {
-            enemyBullet.Fire(this.transform.position, player);
+            enemyBullet.Fire(this.transform.position, player, rotationAngle);
             shotTimer = 0f;
+        }
+    }
+
+    public void SetRotation(
+        float startTime,
+        float endTime,
+        float interval,
+        float rotationAngle,
+        IEnemyBullet enemyBullet
+        )
+    {
+        for (int i = 0; i < (int)((endTime - startTime) / interval); i++)
+        {
+            SetPattern(startTime + interval * i, startTime + interval * (i+1), interval, rotationAngle * i, enemyBullet); 
         }
     }
 }

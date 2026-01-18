@@ -16,7 +16,7 @@ public class PatternCircle : IEnemyBullet
         this.speed = speed;
     }
 
-    public void Fire(Vector3 origin, Transform target)
+    public void Fire(Vector3 origin, Transform target, float defaultAngle)
     {
         for (int i = 0; i < count; i++)
         {
@@ -24,7 +24,7 @@ public class PatternCircle : IEnemyBullet
 
             GameObject bullet = Object.Instantiate(bulletPrefab, origin, Quaternion.identity);
             bullet.GetComponent<BulletMove>().speed = speed;
-            bullet.GetComponent<BulletMove>().angle = angle;
+            bullet.GetComponent<BulletMove>().angle = defaultAngle + angle;
         }
     }
 }

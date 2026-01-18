@@ -291,8 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5402d9cba7a6a4db382c9aa33fe193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 34271387}
   player: {fileID: 1285941889}
+  isExpired: 0
 --- !u!114 &34271399
 MonoBehaviour:
   m_ObjectHideFlags: 0

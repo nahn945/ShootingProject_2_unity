@@ -19,7 +19,7 @@ public class PatternNWay : IEnemyBullet
         this.startAngle = startAngle;
     }
 
-    public void Fire(Vector3 origin, Transform target)
+    public void Fire(Vector3 origin, Transform target, float defaultAngle)
     {
         float baseAngle = startAngle;
 
@@ -31,7 +31,7 @@ public class PatternNWay : IEnemyBullet
 
             GameObject bullet = Object.Instantiate(bulletPrefab, origin, Quaternion.identity);
             bullet.GetComponent<BulletMove>().speed = speed;
-            bullet.GetComponent<BulletMove>().angle = angle;
+            bullet.GetComponent<BulletMove>().angle = defaultAngle + angle;
         }
     }
 }

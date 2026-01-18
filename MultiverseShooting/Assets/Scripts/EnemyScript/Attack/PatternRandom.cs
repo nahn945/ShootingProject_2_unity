@@ -28,7 +28,7 @@ public class PatternRandom : IEnemyBullet
         this.rotateAngle = rotateAngle;
     }
 
-    public void Fire(Vector3 origin, Transform target)
+    public void Fire(Vector3 origin, Transform target, float defaultAngle)
     {
         for (int i = 0; i < count; i++)
         {
