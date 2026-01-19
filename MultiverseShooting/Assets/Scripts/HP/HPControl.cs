@@ -5,7 +5,7 @@ using UnityEngine;
 public class HPControl : MonoBehaviour
 {
     public int value = 10;
-    private bool isDead = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +17,21 @@ public class HPControl : MonoBehaviour
     {
         if (value <= 0)
         {
-            isDead = true;
+            Destroy(gameObject);
         }
     }
 
-    public bool GetIsDead()
+    public void Damage(int damage)
     {
-        return isDead;
+        value -= damage;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerBullet"))
+        {
+            BulletAttack atk = collision.gameObject.GetComponent<BulletAttack>();
+            Damage(atk.AttackPoint);
+        }
     }
 }

@@ -5,6 +5,7 @@ public class BulletMove : MonoBehaviour
 {
     public float speed = 15.0f;
     public float limitY = 5.0f;
+    public float limitX = 8.0f;
     public float angle = 90f;
 
     public bool isRound = false;
@@ -61,7 +62,7 @@ public class BulletMove : MonoBehaviour
 
         roundAngle = (roundAngle + 1) % 90;
 
-        if (Mathf.Abs(transform.position.y) >= limitY)
+        if (Mathf.Abs(transform.position.y) >= limitY || Mathf.Abs(transform.position.x) >= limitX)
         {
             Destroy(gameObject);
         }
