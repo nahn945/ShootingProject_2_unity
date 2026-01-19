@@ -63,9 +63,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   limitY: 5
+  limitX: 8
   angle: 60
+  isRound: 0
+  roundAngle: 0
   isHoming: 0
   homingTime: 1
+  isCross: 0
+  crossAngle: 90
 --- !u!50 &-6236226286707592476
 Rigidbody2D:
   serializedVersion: 4
@@ -103,9 +108,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6788077229518340262}
   - component: {fileID: 3858653043934087447}
+  - component: {fileID: 4479119235391396430}
   m_Layer: 0
   m_Name: GrazeArea
-  m_TagString: Untagged
+  m_TagString: GrazeArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,6 +183,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &4479119235391396430
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185345055217311359}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.50000006
 --- !u!1001 &2712024719278126846
 PrefabInstance:
   m_ObjectHideFlags: 0
