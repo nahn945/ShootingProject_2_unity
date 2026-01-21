@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleTest : MonoBehaviour
+public class SingleTest : DynamicUpdate
 {
     public GameObject bullet;
     public float interval = 0.5f;
@@ -18,9 +18,9 @@ public class SingleTest : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    protected override void Dynamic()
     {
-        if (input.IsAttacking && timer >= interval)
+        if (input.IsAttacking && timer >= interval && !GetIsPaused())
         {
             Fire(bullet);
             timer = 0f;

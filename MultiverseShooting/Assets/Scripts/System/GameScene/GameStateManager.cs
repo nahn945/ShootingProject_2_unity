@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
@@ -21,5 +22,10 @@ public class GameStateManager : MonoBehaviour
         currentState?.Exit();
         currentState = next;
         currentState?.Enter();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
     }
 }
