@@ -213,9 +213,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3182591685320929913}
-  - component: {fileID: 5164903648568475923}
-  - component: {fileID: 5732992649817782422}
   - component: {fileID: 1492321434532725356}
+  - component: {fileID: 657155268785771895}
   m_Layer: 0
   m_Name: CircleBullet
   m_TagString: Untagged
@@ -240,41 +239,6 @@ Transform:
   - {fileID: 6096621736478540063}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5164903648568475923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8484466466846051695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1bd5707eb9cec9428bc7e05d9cf1488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackPoint: 1
---- !u!114 &5732992649817782422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8484466466846051695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5220de7264875a8418f809a5feef3885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 15
-  limitY: 5
-  limitX: 8
-  angle: 90
-  isRound: 0
-  roundAngle: 0
-  isHoming: 0
-  homingTime: 1
-  isCross: 0
-  crossAngle: 90
 --- !u!50 &1492321434532725356
 Rigidbody2D:
   serializedVersion: 4
@@ -302,3 +266,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &657155268785771895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484466466846051695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd49abd502f75845b8f14c0bc8bc247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
