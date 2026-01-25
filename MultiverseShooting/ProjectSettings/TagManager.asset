@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - UIManager
   - GrazeArea
+  - Attacker
+  - AttackerSlow
   layers:
   - Default
   - TransparentFX
