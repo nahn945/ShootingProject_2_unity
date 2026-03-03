@@ -1,0 +1,18 @@
+{
+    "waves" : [
+        [
+            {
+                "position" : {"x" : 0, "y" : 2},
+                "moveSpeed" : 2.0,
+                "moveAngle" : 90.0,
+                "spawnTime" : 5.0,
+                "stopTime" : 1.0,
+                "retreatTime" : 2.0,
+                "patternMove" : 0,
+                "patternRetreat" : 1,
+                "patternAttack" : 0,
+                "attackInterval" : 0.2
+            }
+        ]
+    ]
+}
