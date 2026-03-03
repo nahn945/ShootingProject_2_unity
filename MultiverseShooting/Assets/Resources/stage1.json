@@ -1,0 +1,37 @@
+{
+    "waves" : 
+    [
+        {
+            "spawnPos" : {"x" : 0, "y" : 2},
+            "spawnTime" : 3.0,
+            "pauseTime" : 5.0,
+            "retreatTime" : 8.0,
+            "moveSpeed" : 8.0,
+            "moveAngle" : 90.0,
+            "moveIndex" : 0,
+            "retreatSpeed" : 8.0,
+            "retreatAngle" : -90,
+            "retreatIndex" : 0,
+            "attackSpeed" : 8.0,
+            "attackAngle" : 90,
+            "attackIndex" : 0,
+            "attackInterval" : 0.2
+        },
+        {
+            "spawnPos" : {"x" : 0, "y" : -2},
+            "spawnTime" : 3.0,
+            "pauseTime" : 5.0,
+            "retreatTime" : 8.0,
+            "moveSpeed" : 8.0,
+            "moveAngle" : 90.0,
+            "moveIndex" : 0,
+            "retreatSpeed" : 8.0,
+            "retreatAngle" : -90,
+            "retreatIndex" : 0,
+            "attackSpeed" : 8.0,
+            "attackAngle" : 90,
+            "attackIndex" : 0,
+            "attackInterval" : 0.2
+        }
+    ]
+}
