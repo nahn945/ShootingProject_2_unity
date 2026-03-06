@@ -1,0 +1,41 @@
+{
+    "spawns":
+    [
+        {
+            "spawnTime": 3.0,
+            "retreatTime": 5.0,
+            "x": 0.0,
+            "y": 3.0
+        },
+        {
+            "spawnTime": 4.5,
+            "retreatTime": 5.5,
+            "x": -2.5,
+            "y": 3.0
+        },
+        {
+            "spawnTime": 6.0,
+            "retreatTime": 6.0,
+            "x": 2.5,
+            "y": 3.0
+        },
+        {
+            "spawnTime": 7.5,
+            "retreatTime": 6.5,
+            "x": -4.0,
+            "y": 3.5
+        },
+        {
+            "spawnTime": 9.0,
+            "retreatTime": 7.0,
+            "x": 4.0,
+            "y": 3.5
+        },
+        {
+            "spawnTime": 11.0,
+            "retreatTime": 8.0,
+            "x": 0.0,
+            "y": 4.0
+        }
+    ]
+}
