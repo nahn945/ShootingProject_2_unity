@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         EnemyManager manager = enemyPrefab.GetComponent<EnemyManager>();
-        manager.Init(this);
 
         for (int i = 0; i < poolSize; i++)
         {
@@ -31,18 +30,17 @@ public class EnemySpawner : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        while (spawnIndex < stageData.spawns.Count && timer >= stageData.spawns[spawnIndex].spawnTime)
+        while (spawnIndex < stageData.spawns.Count 
+            && timer >= stageData.spawns[spawnIndex].spawnTime)
         {
-            EnemyData data = stageData.spawns[spawnIndex];
+            
 
             if (enemies.Count == 0)
             {
                 Enqueue();
             }
 
-            EnemyManager e = enemies.Dequeue();
-            e.transform.position = new Vector2(data.x, data.y);
-            e.gameObject.SetActive(true);
+            AddEnemy();
             spawnIndex++;
         }
     }
@@ -51,9 +49,22 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject e = Instantiate(enemyPrefab);
         e.SetActive(false);
-        EnemyManager manager = e.AddComponent<EnemyManager>();
+        EnemyManager manager = e.GetComponent<EnemyManager>();
         e.transform.parent = transform;
         enemies.Enqueue(manager);
+    }
+
+    void AddEnemy()
+    {
+        EnemyManager e = enemies.Dequeue();
+        EnemyData data = stageData.spawns[spawnIndex];
+
+        e.transform.position = new Vector2(data.x, data.y);
+        e.SetData(data);
+        e.SetMovePattern(ConvertMoveIndex(data.moveIndex));
+        e.SetRetreatPattern(ConvertMoveIndex(data.retreatIndex));
+        e.Init(this);
+        e.gameObject.SetActive(true);
     }
 
     public void EnequeueSelf(EnemyManager manager)
@@ -64,5 +75,33 @@ public class EnemySpawner : MonoBehaviour
     public void Init(StageData inputData)
     {
         stageData = inputData;
+    }
+
+    IEnemyMove ConvertMoveIndex(int index)
+    {
+        IEnemyMove pattern;
+        switch(index)
+        {
+            case 0:
+                pattern = new MoveStraight();
+                break;
+            case 1:
+                pattern = new MoveDamping();
+                break;
+            case 2:
+                pattern = new MoveCurve();
+                break;
+            case 3:
+                pattern = new MoveTurning();
+                break;
+            case 4:
+                pattern = new MoveOscilate();
+                break;
+            default:
+                pattern = new MoveStraight();
+                break;
+        }
+
+        return pattern;
     }
 }
