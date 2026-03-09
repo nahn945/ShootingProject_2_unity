@@ -25,4 +25,18 @@ public class EnemyData
     public float retreatAngle;
     public float retreatAngleSpeed;
     public float retreatUniqueParam;
+    public AttackData attackData;
+}
+
+[System.Serializable]
+public class AttackData
+{
+    public float attackTime;
+    public int attackIndex;
+    public float attackSpeed;
+    public float attackAngle;
+    public int attackCount;
+    public float attackInterval;
+    public float attackUniqueParam;
+
 }
