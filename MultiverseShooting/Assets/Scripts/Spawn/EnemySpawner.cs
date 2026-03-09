@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public EnemyBulletPool enemyBulletPool;
+
     public GameObject enemyPrefab;
     Queue<EnemyManager> enemies = new Queue<EnemyManager>();
     int poolSize = 20;
@@ -16,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         EnemyManager manager = enemyPrefab.GetComponent<EnemyManager>();
-
+        //manager.SetPool(enemyBulletPool);
         for (int i = 0; i < poolSize; i++)
         {
             Enqueue();
@@ -63,6 +65,9 @@ public class EnemySpawner : MonoBehaviour
         e.SetData(data);
         e.SetMovePattern(ConvertMoveIndex(data.moveIndex));
         e.SetRetreatPattern(ConvertMoveIndex(data.retreatIndex));
+        e.SetAttackPattern(ConvertAttackIndex(data.attackData.attackIndex));
+        e.SetPool(enemyBulletPool);
+
         e.Init(this);
         e.gameObject.SetActive(true);
     }
@@ -102,6 +107,33 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
+        return pattern;
+    }
+
+    IEnemyAttack ConvertAttackIndex(int index)
+    {
+        IEnemyAttack pattern;
+        switch (index)
+        {
+            case 0:
+                pattern = new IAttackSingle();
+                break;
+            case 1:
+                pattern = new IAttackCircle();
+                break;
+            case 2:
+                pattern = new IAttackRotation();
+                break;
+            case 3:
+                pattern = new IAttackRandom();
+                break;
+            case 4:
+                pattern = new IAttackNWay();
+                break;
+            default:
+                pattern = new IAttackSingle();
+                break;
+        }
         return pattern;
     }
 }

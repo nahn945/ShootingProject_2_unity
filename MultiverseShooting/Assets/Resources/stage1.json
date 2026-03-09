@@ -6,14 +6,23 @@
             "retreatTime": 8.0,
             "x": 0.0,
             "y": 3.0,
-            "moveIndex": 4,
+            "moveIndex": 1,
             "moveSpeed": 5.0,
-            "moveAngle": 90.0,
+            "moveAngle": -90.0,
             "moveAngleSpeed": 0.05,
             "moveUniqueParam": 30.0,
             "retreatIndex": 2,
             "retreatSpeed": 3.0,
             "retreatAngle": -90.0,
+            "attackData": {
+                "attackTime": 0.5,
+                "attackIndex": 4,
+                "attackSpeed": 4.0,
+                "attackAngle": 90.0,
+                "attackCount": 3,
+                "attackInterval":0.2,
+                "attackUniqueParam": 30
+            },
             "retreatAngleSpeed": 0.5,
             "retreatUniqueParam": 2.0
         }

@@ -1,22 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    EnemyBulletPool pool;
+
     EnemySpawner enemySpawner;
     EnemyData enemyData;
+    AttackData attackData;
     IEnemyMove move;
     IEnemyMove retreat;
+    IEnemyAttack attack;
 
     Rigidbody2D rb;
     float timer = 0f;
+    float attackTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        
+
+
     }
 
     // Update is called once per frame
@@ -50,6 +56,16 @@ public class EnemyManager : MonoBehaviour
             rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
         }
 
+        if (attack != null && timer >= enemyData.spawnTime + attackData.attackTime)
+        {
+            if (attackTimer >= attackData.attackInterval)
+            {
+                attack.Fire(attackData);
+                attackTimer = 0f;
+            }
+        }
+
+        attackTimer += Time.fixedDeltaTime;
         timer += Time.fixedDeltaTime;
     }
 
@@ -75,11 +91,17 @@ public class EnemyManager : MonoBehaviour
 
     public void Init(EnemySpawner spawner)
     {
+        Debug.Log("init start");
+        attackData = enemyData.attackData;
+        rb = GetComponent<Rigidbody2D>();
+        Debug.Log("rb get");
+
         enemySpawner = spawner;
         move.Init(rb);
         retreat.Init(rb);
+        attack.Init(pool, rb);
 
-        Debug.Log("set spawn");
+        Debug.Log("init end");
     }
 
     public void SetMovePattern(IEnemyMove pattern)
@@ -92,8 +114,20 @@ public class EnemyManager : MonoBehaviour
         retreat = pattern;
     }
 
+    public void SetAttackPattern(IEnemyAttack pattern)
+    {
+        attack = pattern;
+    }
+
     public void SetData(EnemyData input)
     {
         enemyData = input;
+        Debug.Log("Data set");
+    }
+
+    public void SetPool(EnemyBulletPool bulletPool)
+    {
+        pool = bulletPool;
+        Debug.Log("Set Pool");
     }
 }
