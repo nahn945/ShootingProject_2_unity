@@ -18,11 +18,18 @@ public class EnemyManager : MonoBehaviour
     float timer = 0f;
     float attackTimer = 0f;
 
+    Rigidbody2D player;
+    bool isHoming;
+    bool isHomingLocked = false;
+    Vector2 homingVec = Vector2.zero;
+
+    SpriteRenderer sprite;
+    readonly float HOMING_INTERVAL = 0.08f;
+
     // Start is called before the first frame update
     void Start()
     {
-
-
+        player = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -40,6 +47,20 @@ public class EnemyManager : MonoBehaviour
                 enemyData.retreatAngleSpeed,
                 enemyData
                 );
+            if (isHoming)
+            {
+                if (!isHomingLocked)
+                {
+                    Color c = sprite.color;
+                    c.a = 1;
+                    sprite.color = c;
+
+                    homingVec = (player.position - rb.position).normalized * enemyData.retreatSpeed;
+                }
+                moveVec = homingVec;
+                isHomingLocked = true;
+            }
+
             rb.MovePosition(rb.position + moveVec * Time.fixedDeltaTime);
             return;
         }
@@ -58,7 +79,15 @@ public class EnemyManager : MonoBehaviour
 
         if (attack != null && timer >= enemyData.spawnTime + attackData.attackTime)
         {
-            if (attackTimer >= attackData.attackInterval)
+            if (isHoming)
+            {
+                if (attackTimer >= HOMING_INTERVAL)
+                {
+                    HomingAttackEffect();
+                    attackTimer = 0f;
+                }
+            }
+            else if (attackTimer >= attackData.attackInterval)
             {
                 attack.Fire(attackData);
                 attackTimer = 0f;
@@ -67,6 +96,18 @@ public class EnemyManager : MonoBehaviour
 
         attackTimer += Time.fixedDeltaTime;
         timer += Time.fixedDeltaTime;
+    }
+
+    // ホーミング前の点滅
+    void HomingAttackEffect()
+    {
+        
+        if (sprite == null) return;
+
+        float alpha = Mathf.PingPong(Time.time * 5f, 1f);
+        Color c = sprite.color;
+        c.a = (c.a == 0.5f ? 1f : 0.5f);
+        sprite.color = c;
     }
 
     private void OnEnable()
@@ -92,11 +133,15 @@ public class EnemyManager : MonoBehaviour
     public void Init(EnemySpawner spawner)
     {
         Debug.Log("init start");
+        sprite = GetComponent<SpriteRenderer>();
         attackData = enemyData.attackData;
         rb = GetComponent<Rigidbody2D>();
         Debug.Log("rb get");
 
         enemySpawner = spawner;
+        
+        isHoming = enemyData.retreatHoming;
+        isHomingLocked = false;
         move.Init(rb);
         retreat.Init(rb);
         attack.Init(pool, rb);

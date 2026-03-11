@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class IAttackRandom : IEnemyAttack
 {
+
+    /*
+     * uniqueParam‚ÍŠp“x‚Ì•Ï‰»—Ê
+     */
+
     EnemyBulletPool bulletPool;
     Rigidbody2D rigidbody;
 
@@ -32,7 +37,7 @@ public class IAttackRandom : IEnemyAttack
         for (int i = 0; i < attackData.attackCount; i++)
         {
             BulletMove bullet = bulletPool.GetBullet();
-            bullet.Init(attackData.attackSpeed, baseAngle + step * i, rigidbody.position);
+            bullet.Init(attackData.attackSpeed * Random.Range(0.5f, 1.5f), baseAngle + step * i, rigidbody.position, false);
         }
 
         baseAngle += Random.Range(-(int)attackData.attackUniqueParam, (int)attackData.attackUniqueParam);

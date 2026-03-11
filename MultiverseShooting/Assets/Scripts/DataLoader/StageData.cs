@@ -25,6 +25,7 @@ public class EnemyData
     public float retreatAngle;
     public float retreatAngleSpeed;
     public float retreatUniqueParam;
+    public bool retreatHoming;
     public AttackData attackData;
 }
 
@@ -37,6 +38,7 @@ public class AttackData
     public float attackAngle;
     public int attackCount;
     public float attackInterval;
+    public bool attackHoming;
     public float attackUniqueParam;
 
 }

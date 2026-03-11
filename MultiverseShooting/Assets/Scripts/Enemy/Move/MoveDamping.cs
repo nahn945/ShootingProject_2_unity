@@ -23,7 +23,14 @@ public class MoveDamping : IEnemyMove
         }
         else
         {
-            currentSpeed *= 0.95f;
+            if (currentSpeed >= 0.1f)
+            {
+                currentSpeed *= 0.95f;
+            }
+            else
+            {
+                currentSpeed = 0f;
+            }
         }
 
         float rad = angle * Mathf.Deg2Rad;

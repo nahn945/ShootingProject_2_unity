@@ -17,6 +17,6 @@ public class IAttackSingle : IEnemyAttack
     {
         BulletMove bullet = bulletPool.GetBullet();
         //if (bullet == null) return;
-        bullet.Init(attackData.attackSpeed, attackData.attackAngle, rigidbody.position);
+        bullet.Init(attackData.attackSpeed, attackData.attackAngle, rigidbody.position, attackData.attackHoming);
     }
 }

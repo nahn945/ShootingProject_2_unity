@@ -14,13 +14,15 @@
             "retreatIndex": 2,
             "retreatSpeed": 3.0,
             "retreatAngle": -90.0,
+            "retreatHoming": false,
             "attackData": {
-                "attackTime": 0.5,
-                "attackIndex": 4,
+                "attackTime": 0,
+                "attackIndex": 3,
                 "attackSpeed": 4.0,
                 "attackAngle": 90.0,
                 "attackCount": 3,
                 "attackInterval":0.2,
+                "attackHoming": false,
                 "attackUniqueParam": 30
             },
             "retreatAngleSpeed": 0.5,
