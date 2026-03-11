@@ -24,7 +24,7 @@ public class IAttackCircle : IEnemyAttack
         for (int i = 0; i < attackData.attackCount; i++)
         {
             BulletMove bullet = bulletPool.GetBullet();
-            bullet.Init(attackData.attackSpeed, baseAngle + step * i, rigidbody.position);
+            bullet.Init(attackData.attackSpeed, baseAngle + step * i, rigidbody.position, false);
         }
     }
 }

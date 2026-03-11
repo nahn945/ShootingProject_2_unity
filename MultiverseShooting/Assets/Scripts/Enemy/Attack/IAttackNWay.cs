@@ -26,7 +26,8 @@ public class IAttackNWay : IEnemyAttack
             bullet.Init(
                 attackData.attackSpeed,
                 attackData.attackAngle + step * offset,
-                rigidbody.position
+                rigidbody.position,
+                false
             );
         }
     }
